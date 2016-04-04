@@ -12,15 +12,12 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ALLOW_REGISTRATION = os.environ.get('ALLOW_REGISTRATION') or True
 
-    FILE_UPLOAD_FOLDER = (os.environ.get('FILE_UPLOAD_FOLDER') or 
-                          os.path.join(project_dir, 'file_uploads'))
-
     @staticmethod
     def init_app(app):
         pass
 
 class DevelopmentConfig(Config):
-    LOG_FILE = 'Status_dev.log'
+    LOG_FILE = 'mfb_dev.log'
     DEBUG = True
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -30,22 +27,17 @@ class DevelopmentConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
             'sqlite:///' + os.path.join(project_dir, 'data-dev.sqlite')
-    # POSTGRES_USER = 'postgres'
-    # POSTGRES_PASS = os.environ.get('POSTGRES_PASS') or 'password'
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-    #         'postgresql+psycopg2://{}:{}@localhost:5432/status_dev'.format(
-    #         POSTGRES_USER, POSTGRES_PASS)
 
 
 class TestingConfig(Config):
-    LOG_FILE = 'Status_testing.log'
+    LOG_FILE = 'mfb_testing.log'
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
             'sqlite:///' + os.path.join(project_dir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
-    LOG_FILE = 'Status_production.log'
+    LOG_FILE = 'mfb_production.log'
     ALLOW_REGISTRATION = os.environ.get('ALLOW_REGISTRATION') or False
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('PROD_DATABASE_URL') or \
