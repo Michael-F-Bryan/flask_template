@@ -6,9 +6,9 @@ project_dir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'my super secret key'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    JAKE_MAIL_SUBJECT_PREFIX = '[Status]'
-    JAKE_MAIL_SENDER = 'CottonBud <cottonbud315@gmail.com>'
-    JAKE_ADMIN = os.environ.get('JAKE_ADMIN')
+    # JAKE_MAIL_SUBJECT_PREFIX = '[Status]'
+    # JAKE_MAIL_SENDER = 'CottonBud <cottonbud315@gmail.com>'
+    # JAKE_ADMIN = os.environ.get('JAKE_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ALLOW_REGISTRATION = os.environ.get('ALLOW_REGISTRATION') or True
 
@@ -17,7 +17,7 @@ class Config:
         pass
 
 class DevelopmentConfig(Config):
-    LOG_FILE = 'mfb_dev.log'
+    LOG_FILE = 'website_dev.log'
     DEBUG = True
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -30,14 +30,14 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
-    LOG_FILE = 'mfb_testing.log'
+    LOG_FILE = 'website_testing.log'
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
             'sqlite:///' + os.path.join(project_dir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
-    LOG_FILE = 'mfb_production.log'
+    LOG_FILE = 'website_production.log'
     ALLOW_REGISTRATION = os.environ.get('ALLOW_REGISTRATION') or False
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('PROD_DATABASE_URL') or \

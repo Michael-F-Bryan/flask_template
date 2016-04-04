@@ -34,7 +34,7 @@ def create_app(config_name):
     import logging
     from logging.handlers import RotatingFileHandler
     file_handler = RotatingFileHandler(
-            app.config.get('LOG_FILE') or 'Status.log', 
+            app.config.get('LOG_FILE'), 
             maxBytes=1024 * 1024 * 100, 
             backupCount=20)
     file_handler.setLevel(logging.INFO)
